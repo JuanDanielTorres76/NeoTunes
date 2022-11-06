@@ -174,15 +174,17 @@ public class NeoTunesManager {
         return alert;
     }
 
-    public String editPlaylist(String uName){
+    public String editPlaylist(String uName, String pName, String sName){
         boolean stop = false;
         String alert = "";
         for(int i = 0; i<registeredConsumers.size() && !stop ; i++){
-            if(registeredConsumers.get(i).getName().equalsIgnoreCase(name)){
+            if(registeredConsumers.get(i).getName().equalsIgnoreCase(uName)){
                 if(registeredConsumers.get(i) instanceof Standard){
-                    
+                    Standard obj = (Standard)registeredConsumers.get(i);
+                    alert = obj.removeItemFromPlaylistSt(pName, sName);
                 }else if(registeredConsumers.get(i) instanceof Premium){
-
+                    Premium obj = (Premium)registeredConsumers.get(i);
+                    alert = obj.removeItemFromPlaylistPr(pName, sName);
                 }
                 stop = true;
             }

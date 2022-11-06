@@ -79,11 +79,11 @@ public class Standard extends Consumer {
 
     }
 
-    public String editPlaylistSt(String name, String sName){
+    public String removeItemFromPlaylistSt(String pName, String sName){
         String alert = "";
         boolean stop = false;
         for(int i = 0; i<stPlaylists.length && !stop; i++){
-            if(stPlaylists[i].getName().equalsIgnoreCase(name)){
+            if(stPlaylists[i].getName().equalsIgnoreCase(pName)){
                 alert = stPlaylists[i].removeItem(sName);
                 stop = true;
             }

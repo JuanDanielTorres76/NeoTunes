@@ -91,11 +91,12 @@ public class NeoTunesApp {
             switch(option3){
                 case 1: ntApp.registerConsumer();
                     break;
-                case 2: 
+                case 2: ntApp.createPlaylist();
                     break;
-                case 3: 
+                case 3: ntApp.createPlaylist();
                     break;
-                case 4: 
+                case 4: System.out.println("Back to the menu");
+                continuar2 = false; 
                     break;
                 default:
                     break;
@@ -277,6 +278,13 @@ public class NeoTunesApp {
             read.nextLine();
             switch(option){
                 case 1:
+                //Cambiar validacion del nombre a una mas local.
+                System.out.println("Type the name of the song which will be removed ");
+                String sName = read.nextLine();
+                System.out.println("Type the name of the playlist which will be edited");
+                String pName = read.nextLine();
+                String alert = ntManager.editPlaylist(uName, pName, sName);
+                System.out.println(alert);
                     break;
                 case 2:
                     break;

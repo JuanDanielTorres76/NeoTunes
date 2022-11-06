@@ -50,6 +50,22 @@ public class Premium extends Consumer{
         return alert;
     }
 
+    public String removeItemFromPlaylistPr(String pName, String sName){
+        String alert = "";
+        boolean stop = false;
+        for(int i = 0; i<prPlaylists.size() && !stop; i++){
+            if(prPlaylists.get(i).getName().equalsIgnoreCase(pName)){
+                alert = prPlaylists.get(i).removeItem(sName);
+                stop = true;
+            }
+            else{
+                alert = "This playlist does not exist";
+            }
+        }
+        return alert;
+    }
+
+
     public String getLabel() {
         return label;
     }
