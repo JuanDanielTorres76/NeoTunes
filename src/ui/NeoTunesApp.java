@@ -273,7 +273,6 @@ public class NeoTunesApp {
             System.out.println("1 - Remove an item for the playlist");
             System.out.println("2 - Switch positions of songs ");
             System.out.println("3 - Get back to the previous menu");
-            System.out.println(" Type any other number to get back to the previous menu");
             int option = read.nextInt();
             read.nextLine();
             switch(option){
