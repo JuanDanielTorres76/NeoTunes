@@ -95,6 +95,27 @@ public class Standard extends Consumer {
 
     }
 
+    public void showStandardPlaylists(){
+        boolean continuar = true;
+        for(int i = 0; i<stPlaylists.length && continuar; i++){
+            if(stPlaylists[i] != null){
+                System.out.println(i +" - " +stPlaylists[i].getName());
+            } else{
+                continuar = false;
+            }
+        }
+    }
+
+    public void showStandardSongs(String pName){
+        boolean continuar = true;
+        for(int i = 0; i<stPlaylists.length && continuar; i++){
+            if(stPlaylists[i] != null && stPlaylists[i].getName().equalsIgnoreCase(pName)){
+                stPlaylists[i].showSongs();
+                continuar = false;
+            } 
+        }
+    }
+
     public int getNumOfAds() {
         return numOfAds;
     }

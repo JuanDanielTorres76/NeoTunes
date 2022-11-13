@@ -195,6 +195,41 @@ public class NeoTunesManager {
         return alert;
     }
 
+    public void showRegisteredUsers(){
+        for(int i = 0; i<registeredConsumers.size(); i++){
+            System.out.println(i + " - " +  registeredConsumers.get(i).getName());
+        }
+    }
+
+
+    public void showUserPlaylists(String uName){
+        for(int i = 0; i<registeredConsumers.size(); i++){
+            if(registeredConsumers.get(i).getName().equalsIgnoreCase(uName)){
+                if(registeredConsumers.get(i) instanceof Standard){
+                    Standard obj = (Standard)registeredConsumers.get(i);
+                    obj.showStandardPlaylists();
+                } else if(registeredConsumers.get(i) instanceof Premium){
+                    Premium obj = (Premium)registeredConsumers.get(i);
+                    obj.showPrPlaylists();
+                }
+            }
+        }
+    }
+
+    public void showAudioOfPlaylist(String uName, String pName){
+        for(int i = 0; i<registeredConsumers.size(); i++){
+            if(registeredConsumers.get(i).getName().equalsIgnoreCase(uName)){
+                if(registeredConsumers.get(i) instanceof Standard){
+                    Standard obj = (Standard)registeredConsumers.get(i);
+                    obj.showStandardSongs(pName);
+                } else if(registeredConsumers.get(i) instanceof Premium){
+                    Premium obj = (Premium)registeredConsumers.get(i);
+                    obj.showPremiumSongs(pName);
+                }
+            }
+        }
+
+    }
 
     public String getId() {
         return id;

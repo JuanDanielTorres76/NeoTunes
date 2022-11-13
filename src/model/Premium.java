@@ -65,6 +65,22 @@ public class Premium extends Consumer{
         return alert;
     }
 
+    public void showPrPlaylists(){
+        for(int i = 0; i<prPlaylists.size(); i++){
+            System.out.println(i +" - " +prPlaylists.get(i).getName());
+        }
+    }
+
+    public void showPremiumSongs(String pName){
+        boolean continuar = true;
+        for(int i = 0; i<prPlaylists.size() && continuar; i++){
+            if(prPlaylists.get(i).getName().equalsIgnoreCase(pName)){
+                prPlaylists.get(i).showSongs();
+                continuar = false;
+            } 
+        }
+    }
+
 
     public String getLabel() {
         return label;

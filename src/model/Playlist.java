@@ -114,7 +114,19 @@ public class Playlist {
         return code;
     }
 
-    
+    public String reverseForm(){
+        String code = "";
+        for(int i = matriz.length-1; i>=0; i--){
+            for(int j = matriz[0].length-1; j>=0; j-- ){
+                if((j+i) % 2 != 0 && j+i != 1){
+                    code += matriz[i][j];
+                }
+            }
+        }
+        return code;
+    }
+
+
     public String formT(){
         String code = "", part1 ="", part2 = "", part3 = "", part4 ="";
         for(int j = 0; j<(matriz[0].length/2); j++){
@@ -135,6 +147,12 @@ public class Playlist {
         }
         code = part1+part2+part3+part4;
         return code;
+    }
+
+    public void showSongs(){
+        for(int i = 0; i<AudioPlaylist.size(); i++){
+            System.out.println( i + " - " + AudioPlaylist.get(i).getName());
+        }
     }
 
     public int[][] getMatriz() {

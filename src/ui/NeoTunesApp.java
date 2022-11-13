@@ -213,7 +213,6 @@ public class NeoTunesApp {
             default: kindGenre = Genre.NONE;
                 break;
             }
-
         System.out.println("Type the name or the nickname of the artist which you want to add this song");
         String aName = read.nextLine();
         String alert = ntManager.addSong(name, length, url, album, price, kindGenre, aName);
@@ -266,8 +265,18 @@ public class NeoTunesApp {
     }
 
     public void editPlaylist(){
-        System.out.println("Type the name of the user which you want to use");
+        System.out.println("Here are the registered users");
+        ntManager.showRegisteredUsers();
+        System.out.println("Type the nick name of the user which you want to use");
         String uName = read.nextLine();
+        boolean uValidation = ntManager.validateConsumer(uName);
+        while(uValidation == false){
+            System.out.println("This user hasnt been registered yet");
+            System.out.println("Here are the registered users");
+            ntManager.showRegisteredUsers();
+            uName = read.nextLine();
+            uValidation = ntManager.validateConsumer(uName);
+        }
         boolean continar = true;
         while(continar){
             System.out.println("Digita una de las siguientes opciones ");
@@ -278,19 +287,24 @@ public class NeoTunesApp {
             read.nextLine();
             switch(option){
                 case 1:
-                //Cambiar validacion del nombre a una mas local.
-                System.out.println("Type the name of the song which will be removed ");
-                String sName = read.nextLine();
                 System.out.println("Type the name of the playlist which will be edited");
-                String pName = read.nextLine();
+                System.out.println("Here are the name of the playlists");
+                ntManager.showUserPlaylists(uName);
+                String pName = read.nextLine(); 
+                System.out.println("Type the name of the song which will be removed ");
+                System.out.println("Here are the name of the songs");
+                ntManager.showAudioOfPlaylist(uName, pName);
+                String sName = read.nextLine();
                 String alert = ntManager.editPlaylist(uName, pName, sName);
                 System.out.println(alert);
                     break;
                 case 2:
                     break;
                 case 3:
+                continar = false;
                     break;
                 default:
+                System.out.println("Invalid option");
                     break;    
             }
         }
