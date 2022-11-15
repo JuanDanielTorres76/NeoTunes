@@ -200,6 +200,27 @@ public class NeoTunesManager {
             System.out.println(i + " - " +  registeredConsumers.get(i).getName());
         }
     }
+    //Add to git and chek it again
+    public String switchPositions(String uName, String pName, String fSong, String sSong){
+        boolean stop = false; 
+        String alert = "";
+        for(int i = 0; i<registeredConsumers.size() && !stop ; i++){
+            if(registeredConsumers.get(i).getName().equalsIgnoreCase(uName)){
+                if(registeredConsumers.get(i) instanceof Standard){
+                    Standard obj = (Standard)registeredConsumers.get(i);
+                    alert = obj.switchPositionsSt(pName, fSong, sSong);
+                }else if(registeredConsumers.get(i) instanceof Premium){
+                    Premium obj = (Premium)registeredConsumers.get(i);
+                    alert = obj.switchPositionsPr(pName, fSong, sSong);
+                }
+                stop = true;
+            }
+            else{
+                alert = "This user does not exist ";
+            }
+        }
+        return alert;
+    }
 
 
     public void showUserPlaylists(String uName){

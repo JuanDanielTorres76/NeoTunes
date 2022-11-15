@@ -93,7 +93,7 @@ public class NeoTunesApp {
                     break;
                 case 2: ntApp.createPlaylist();
                     break;
-                case 3: ntApp.createPlaylist();
+                case 3: ntApp.editPlaylist();
                     break;
                 case 4: System.out.println("Back to the menu");
                 continuar2 = false; 
@@ -258,7 +258,7 @@ public class NeoTunesApp {
     public void createPlaylist(){
         System.out.println(" Name the playlist");
         String name = read.nextLine();
-        System.out.println("Type the nickname of the User which will use this playlist");
+        System.out.println("Type the nickname of the User which will add this playlist");
         String nickname = read.nextLine();
         String alert = ntManager.addPlaylist(name, nickname);
         System.out.println(alert);
@@ -298,7 +298,20 @@ public class NeoTunesApp {
                 String alert = ntManager.editPlaylist(uName, pName, sName);
                 System.out.println(alert);
                     break;
-                case 2:
+                case 2:System.out.println(" Type the name of the playlist which will be edited");
+                System.out.println("Here are the name of the playlists");
+                ntManager.showUserPlaylists(uName);
+                pName = read.nextLine();
+                System.out.println("Here are the name of the songs");
+                ntManager.showAudioOfPlaylist(uName, pName);
+                System.out.println("Type the name of the first song which will be switched");
+                String fSong = read.nextLine();
+                System.out.println("Here are the name of the songs again");
+                ntManager.showAudioOfPlaylist(uName, pName);
+                System.out.println("Type the name of the seocnd song which will be switched");
+                String sSong = read.nextLine();
+                alert = ntManager.switchPositions(uName, pName, fSong, sSong);
+                System.out.println(alert);
                     break;
                 case 3:
                 continar = false;

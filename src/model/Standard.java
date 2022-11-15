@@ -54,11 +54,13 @@ public class Standard extends Consumer {
         String alert = "";
         if(validate == false){
             for(int i = 0; i<stSongs.length && !stop; i++ ){
-                if(stSongs[i] == null){
+                if(stSongs[i] == null && stSongs.length<100){
                     stSongs[i] = new Song(name, length, url, album, price, kindGenre);
                     alert = "The song has been sucesfully added to the library";
                     stop = true;
-                } 
+                } else{
+                    alert = "The library has reached its limits, your account only allows 100 songs";
+                }
                 
             }
         } else{
@@ -104,6 +106,18 @@ public class Standard extends Consumer {
                 continuar = false;
             }
         }
+    }
+
+    public String switchPositionsSt(String pName, String fSong, String sSong){
+        String alert = "This playlist does not exist";
+        boolean continuar = false;
+        for(int i = 0 ;i<stPlaylists.length && !continuar; i++){
+            if(stPlaylists[i].getName().equalsIgnoreCase(pName)){
+                alert = stPlaylists[i].switchItem(fSong, sSong);
+                continuar = true;
+            }
+        }
+        return alert;
     }
 
     public void showStandardSongs(String pName){

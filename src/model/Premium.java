@@ -81,6 +81,18 @@ public class Premium extends Consumer{
         }
     }
 
+    public String switchPositionsPr(String pName, String fSong, String sSong){
+        String alert = "This playlist does not exist";
+        boolean continuar = false;
+        for(int i = 0 ;i<prPlaylists.size() && !continuar; i++){
+            if(prPlaylists.get(i).getName().equalsIgnoreCase(pName)){
+                prPlaylists.get(i).switchItem(fSong, sSong);
+                continuar = true;
+            }
+        }
+        return alert;
+    }
+
 
     public String getLabel() {
         return label;

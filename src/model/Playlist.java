@@ -60,6 +60,72 @@ public class Playlist {
         return message;
     }
 
+    public String switchItem(String fSong, String sSOng){
+        String message = "";
+        boolean stop = false, stop1 = false;
+        for(int i = 0; i<AudioPlaylist.size() && !stop; i++){
+            if(AudioPlaylist.get(i).getName().equalsIgnoreCase(fSong)){
+                stop = true; 
+                for(int b = 0; b<AudioPlaylist.size() && !stop1; b++){
+                    if(AudioPlaylist.get(b).getName().equalsIgnoreCase(sSOng)){
+                        stop1 = true;
+                        if(AudioPlaylist.get(i) instanceof Song && AudioPlaylist.get(b)instanceof Song){
+                            Song obj = (Song)AudioPlaylist.get(i);
+                            AudioPlaylist.add(obj);
+                            Song obj1 = (Song)AudioPlaylist.get(b);
+                            AudioPlaylist.set(i, obj1);
+                            int lastItem = AudioPlaylist.size()-1;
+                            Song obj2 = (Song)AudioPlaylist.get(lastItem);
+                            AudioPlaylist.set(b, obj2);
+                            AudioPlaylist.remove(lastItem);
+                            message = "The song" + fSong + " has switched positions with the song " + sSOng;
+
+                        } else if(AudioPlaylist.get(i) instanceof Song && AudioPlaylist.get(b) instanceof Podcast){
+                            Song obj = (Song)AudioPlaylist.get(i);
+                            AudioPlaylist.add(obj);
+                            Podcast obj1 = (Podcast)AudioPlaylist.get(b); 
+                            AudioPlaylist.set(i, obj1);
+                            int lastItem = AudioPlaylist.size()-1;
+                            Song obj2 = (Song)AudioPlaylist.get(lastItem);
+                            AudioPlaylist.set(b, obj2);
+                            AudioPlaylist.remove(lastItem);
+                            message = "The song" + fSong + " has switched positions with the podcast " + sSOng;
+                            
+                        } else if(AudioPlaylist.get(i) instanceof Podcast && AudioPlaylist.get(b) instanceof Song){
+                            Podcast obj = (Podcast)AudioPlaylist.get(i);
+                            AudioPlaylist.add(obj);
+                            Song obj1 = (Song)AudioPlaylist.get(b);
+                            AudioPlaylist.set(i, obj1);
+                            int lastItem = AudioPlaylist.size()-1;
+                            Song obj2 = (Song)AudioPlaylist.get(lastItem);
+                            AudioPlaylist.set(b, obj2);
+                            AudioPlaylist.remove(lastItem);
+                            message = "The Podcats" + fSong + " has switched positions with the song " + sSOng;
+                            
+                        } else if(AudioPlaylist.get(i) instanceof Podcast && AudioPlaylist.get(b) instanceof Podcast){
+                            Podcast obj = (Podcast)AudioPlaylist.get(i);
+                            AudioPlaylist.add(obj);
+                            Podcast obj1 = (Podcast)AudioPlaylist.get(b);
+                            AudioPlaylist.set(i, obj1);
+                            int lastItem = AudioPlaylist.size()-1;
+                            Podcast obj2 = (Podcast)AudioPlaylist.get(lastItem);
+                            AudioPlaylist.set(b, obj2);
+                            AudioPlaylist.remove(lastItem);
+                            message = "The Podcats" + fSong + " has switched positions with the podcast " + sSOng;
+                        }
+                        
+                    //Add method   
+                    } else{
+                        message = "The audioItem" + sSOng + "hasnt been added";
+                    }
+                } 
+            } else{
+                message = "The audioItem" + fSong + " hasnt been added";
+            }
+        }
+        return message;
+    }
+
     public void FillMat(){
         for( int i = 0; i<matriz.length; i++){
             for(int j = 0; j<matriz[0].length; j++){
