@@ -166,14 +166,6 @@ public class Playlist {
     }
 
     public void setCode(String code) {
-        int s = countSongs(); int p = countPodcats();
-        if(s>0 && p>0){
-            //llenar code
-        } else if(s>0 && p ==0){
-            this.code = formN();
-        } else if(s==0 && p>0){
-            this.code = formT();
-        }
         this.code = code;
     }
 
@@ -236,6 +228,27 @@ public class Playlist {
             System.out.println( i + " - " + AudioPlaylist.get(i).getName());
         }
     }
+
+    public String sharePlaylist(){
+        String alert = "", code = "";
+        int sCont = countSongs(), pCont = countPodcats();
+        if(sCont >0 && pCont>0){
+            code = reverseForm();
+            alert = "the code is " + code;
+            setCode(code);
+        } else if(sCont>0 && pCont == 0){
+            code = formN();
+            alert = "the code is " + code;
+            setCode(code);
+        } else if(sCont == 0 && pCont>0){
+            code = formT();
+            alert = "the code is " + code;
+            setCode(code);
+        }
+
+        return alert;
+    }
+
 
     public int[][] getMatriz() {
         return matriz;

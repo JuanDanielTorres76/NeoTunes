@@ -105,6 +105,19 @@ public class Premium extends Consumer{
         return alert;
     }
 
+    public String sharePlaylistPr(String playlistName){
+        String alert = "The playlist doesnt exist";
+        boolean stop = false;
+        for(int i  = 0; i<prPlaylists.size() && !stop; i++){
+            if(prPlaylists.get(i).getName().equalsIgnoreCase(playlistName)){
+                alert = "To share the playlist " + prPlaylists.get(i).sharePlaylist();
+                stop = true;  
+            }
+        }
+        return alert;
+
+    }
+
 
     public String getLabel() {
         return label;

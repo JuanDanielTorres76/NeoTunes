@@ -331,6 +331,23 @@ public class NeoTunesManager {
 
     }
 
+    public String sharePlaylist(String uName, String playlistName){
+        String alert = "This user doesnt exist";
+        boolean stop = false;
+        for(int i = 0; i<registeredConsumers.size() && !stop; i++){
+            if(registeredConsumers.get(i).getName().equalsIgnoreCase(uName)){
+                if(registeredConsumers.get(i) instanceof Standard){
+                    Standard obj = (Standard)registeredConsumers.get(i);
+                    alert = obj.sharePlaylistSt(playlistName);
+                } else if(registeredConsumers.get(i) instanceof Premium){
+                    Premium obj = (Premium)registeredConsumers.get(i);
+                    alert = obj.sharePlaylistPr(playlistName);
+                }
+            }
+        }
+        return alert;
+    }
+
     public String getId() {
         return id;
     }

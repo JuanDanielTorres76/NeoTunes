@@ -86,7 +86,8 @@ public class NeoTunesApp {
             System.out.println(" 2 - Create a Playlist");
             System.out.println(" 3 - Edit a playlist");
             System.out.println(" 4 - Add song to playlist");
-            System.out.println(" 5 - Return to the main menu");
+            System.out.println(" 5 - Share Playlist");
+            System.out.println(" 6 - Return to the main menu");
             int option3 = read.nextInt();
             read.nextLine();
             switch(option3){
@@ -96,9 +97,11 @@ public class NeoTunesApp {
                     break;
                 case 3: ntApp.editPlaylist();
                     break;
-                case 4: 
+                case 4: ntApp.addAudioToPlaylist();
                     break;
-                case 5: System.out.println("Back to the menu");
+                case 5: 
+                    break;
+                case 6: System.out.println("Back to the menu");
                 continuar2 = false; 
                     break;
                 default:
@@ -117,7 +120,6 @@ public class NeoTunesApp {
         String id = read.nextLine();
         System.out.println("Type the url of the Productor");
         String url = read.nextLine();
-        // se añade la fecha en la que se regitro el usuario} 
         String date = "El usuario se registro a: " + new Date();
         System.out.println("Type the year that the user started making its productions");
         int year = read.nextInt(); 
@@ -268,7 +270,7 @@ public class NeoTunesApp {
     }
 
     public void addAudioToPlaylist(){
-        System.out.println("Type the name of the user wich will add this song");
+        System.out.println("Type the name of the user which will add this song");
         System.out.println("Here are the users");
         ntManager.showRegisteredUsers();
         String uName = read.nextLine();
@@ -346,6 +348,20 @@ public class NeoTunesApp {
             }
         }
         
+
+    }
+
+    public void sharePlaylist(){
+        System.out.println("Type the name of the user which will share this song");
+        System.out.println("Here are the users");
+        ntManager.showRegisteredUsers(); 
+        String uName = read.nextLine();
+        System.out.println("Type the name of the playlist which will be shared");
+        System.out.println("Here are the Playlist");
+        ntManager.showUserPlaylists(uName);
+        String playlistName = read.nextLine();
+        String alert = ntManager.sharePlaylist(uName, playlistName);
+        System.out.println(alert);
 
     }
 

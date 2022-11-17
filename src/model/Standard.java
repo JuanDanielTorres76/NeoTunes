@@ -145,6 +145,19 @@ public class Standard extends Consumer {
         }
         return alert; 
     }
+
+    public String sharePlaylistSt(String playlistName){
+        String alert = "The playlist doesnt exist";
+        boolean stop = false;
+        for(int i  = 0; i<stPlaylists.length && !stop; i++){
+            if(stPlaylists[i] != null && stPlaylists[i].getName().equalsIgnoreCase(playlistName)){
+                alert = "To share the playlist " + stPlaylists[i].sharePlaylist();
+                stop = true;
+            }
+        }
+        return alert;
+    }
+    
     public int getNumOfAds() {
         return numOfAds;
     }
