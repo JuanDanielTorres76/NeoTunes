@@ -88,7 +88,8 @@ public class NeoTunesApp {
             System.out.println(" 4 - Add song to playlist");
             System.out.println(" 5 - Share Playlist");
             System.out.println(" 6 - Simulate playback of an audio");
-            System.out.println(" 7 - Return to the main menu");
+            System.out.println(" 7 - Buy a song");
+            System.out.println(" 8 - Return to the main menu");
             int option3 = read.nextInt();
             read.nextLine();
             switch(option3){
@@ -104,7 +105,9 @@ public class NeoTunesApp {
                     break;
                 case 6: ntApp.simulatePlaybackOfAudio();
                     break;
-                case 7: System.out.println("Back to the menu");
+                case 7: ntApp.buySong();
+                    break;
+                case 8: System.out.println("Back to the menu");
                 continuar2 = false; 
                     break;
                 default:
@@ -418,6 +421,20 @@ public class NeoTunesApp {
         
 
 
+    }
+
+    public void buySong(){
+        System.out.println("Type the name of the artist which you want to buy the song of");
+        System.out.println("Here are the artists");
+        ntManager.showArtists();
+        String aName = read.nextLine();
+        System.out.println("Type the name of the song which you want to buy");
+        String proName = ntManager.showProductorAudio(aName);
+        System.out.println("Here are the songs of the " + proName);
+        System.out.println("Type the name of the song you want to buy");
+        String sName = read.nextLine();
+        String alert = ntManager.buySong(aName, sName);
+        System.out.println(alert);
     }
 
      

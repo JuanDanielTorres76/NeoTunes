@@ -77,5 +77,39 @@ public class Artist extends Productor {
         return option;
     }
 
+    public String buySong(String sName){
+        String alert = "This song is not in the library of the artist";
+        boolean stop = false;
+        for(int i = 0; i<artistSongs.size() && !stop; i++){
+            if(artistSongs.get(i).getName().equalsIgnoreCase(sName)){
+                alert = "The song has been sucesfully bougth";
+                stop = true;    
+            }
+        }
+        return alert;
+    }
+
+    public boolean addSale(String sName){
+        boolean stop = false;
+        for(int i = 0; i<artistSongs.size() && !stop; i++){
+            if(artistSongs.get(i).getName().equalsIgnoreCase(sName)){
+                stop = true;
+            }
+        }
+        return stop;
+    }
+
+    public double addTransaction(String sName){
+        double price = 0;
+        boolean stop = false;
+        for(int i = 0; i<artistSongs.size() && !stop; i++){
+            if(artistSongs.get(i).getName().equalsIgnoreCase(sName)){
+                stop = true;
+                price = artistSongs.get(i).getPrice();
+            }
+        }
+        return price;
+    }
+
     
 }

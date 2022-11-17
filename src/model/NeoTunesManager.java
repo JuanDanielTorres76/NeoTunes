@@ -11,6 +11,8 @@ public class NeoTunesManager {
     protected ArrayList <AudioProduct> audioProducts;
     protected int playedGenres[] = new int[4];
     protected int playedCategories[] = new int[4];
+    private int numOfSales;
+    private double valueOfSales; 
 
     //relations 
     public NeoTunesManager(String name, String id){
@@ -19,6 +21,8 @@ public class NeoTunesManager {
         registeredConsumers = new ArrayList<Consumer>();
         registredProductors = new ArrayList<Productor>();
         audioProducts = new ArrayList<AudioProduct>();
+        numOfSales = 0;
+        valueOfSales = 0;
     }
 
     public void fillCounters(){
@@ -216,8 +220,17 @@ public class NeoTunesManager {
         }
     }
 
+    public void showArtists(){
+        int a = 1;
+        for(int i = 0; i<registredProductors.size(); i++){
+            if(registredProductors.get(i) instanceof Artist){
+                System.out.println(a + " - " + registredProductors.get(i).getName());
+            }
+        }
+    }
+
     public String showProductorAudio(String proName){
-        String alert = "The porductor has not been registered";
+        String alert = "The productor has not been registered";
         boolean continuar = false;
         for(int i = 0; i<registredProductors.size() && !continuar; i++){
             if(registeredConsumers.get(i).getName().equalsIgnoreCase(proName)){
@@ -229,7 +242,7 @@ public class NeoTunesManager {
                 } else if(registredProductors.get(i) instanceof ContentCreator){
                     ContentCreator obj = (ContentCreator)registredProductors.get(i);
                     obj.showPodcasts();
-                    alert = "Contet creator";
+                    alert = "Content creator";
                 }
             } 
         }
@@ -461,6 +474,35 @@ public class NeoTunesManager {
         return alert;
     }
 
+    public String buySong(String aName, String sName){
+        String alert = "This artist doesnt exists ";
+        boolean stop = false;
+        for(int i = 0; i<registredProductors.size() && !stop; i++){
+            if(registredProductors.get(i).getName().equalsIgnoreCase(aName)){
+                stop = true;
+                if(registredProductors.get(i) instanceof Artist){
+                    Artist obj = (Artist)registredProductors.get(i);
+                    alert = obj.buySong(sName);
+                    double price = obj.addTransaction(sName);
+                    boolean transction = obj.addSale(sName);
+                    int numOfSales = getNumOfSales();
+                    if(transction == true ){
+                        numOfSales++;
+                        setNumOfSales(numOfSales);
+                        double partialValue = getValueOfSales();
+                        valueOfSales = partialValue + price;
+                        setValueOfSales(valueOfSales);
+                    }
+                    
+                } else {
+                    alert = "This productor is not an artist";
+                }
+            }
+                
+        }
+        return alert;
+    }
+
     public String getId() {
         return id;
     }
@@ -475,6 +517,22 @@ public class NeoTunesManager {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getNumOfSales() {
+        return numOfSales;
+    }
+
+    public void setNumOfSales(int numOfSales) {
+        this.numOfSales = numOfSales;
+    }
+
+    public double getValueOfSales() {
+        return valueOfSales;
+    }
+
+    public void setValueOfSales(double valueOfSales) {
+        this.valueOfSales = valueOfSales;
     }
     
 }
