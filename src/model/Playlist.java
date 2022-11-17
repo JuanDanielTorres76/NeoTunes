@@ -126,6 +126,22 @@ public class Playlist {
         return message;
     }
 
+    public String addSong(AudioProduct obj){
+        String alert = "";
+        boolean stop = false;
+        for( int i = 0; i<AudioPlaylist.size() && !stop; i++){
+            if(AudioPlaylist.get(i).getName().equalsIgnoreCase(obj.getName())){
+                alert = "This song has already been added to the playlist";
+                stop = true;
+            } 
+        }
+        if(stop == false){
+            AudioPlaylist.add(obj);
+            alert = "The audio" + obj.getName() + "has been sucesfully added to the playlist ";
+        }
+        return alert;
+    }
+
     public void FillMat(){
         for( int i = 0; i<matriz.length; i++){
             for(int j = 0; j<matriz[0].length; j++){

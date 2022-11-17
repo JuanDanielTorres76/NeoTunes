@@ -93,6 +93,18 @@ public class Premium extends Consumer{
         return alert;
     }
 
+    public String addAudioToPlaylistPr(String playlistName, AudioProduct obj){
+        String alert ="This playlist doesnt exist";
+        boolean continuar = false;
+        for(int i = 0; i<prPlaylists.size() && !continuar; i++){
+            if(prPlaylists.get(i).getName().equalsIgnoreCase(playlistName)){
+                continuar = true; 
+                alert = prPlaylists.get(i).addSong(obj) + prPlaylists.get(i).getName();
+            }
+        }
+        return alert;
+    }
+
 
     public String getLabel() {
         return label;

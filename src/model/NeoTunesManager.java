@@ -200,7 +200,86 @@ public class NeoTunesManager {
             System.out.println(i + " - " +  registeredConsumers.get(i).getName());
         }
     }
-    //Add to git and chek it again
+
+    public void showProductors(){
+        for(int i = 0; i<registredProductors.size(); i++){
+            System.out.println(i + " - " + registredProductors.get(i).getName());
+        }
+    }
+
+    public String showProductorAudio(String proName){
+        String alert = "The porductor has not been registered";
+        boolean continuar = false;
+        for(int i = 0; i<registredProductors.size() && !continuar; i++){
+            if(registeredConsumers.get(i).getName().equalsIgnoreCase(proName)){
+                continuar = false;
+                if(registredProductors.get(i) instanceof Artist){
+                    Artist obj = (Artist)registredProductors.get(i);
+                    alert = "Artists";
+                    obj.showSongs();
+                } else if(registredProductors.get(i) instanceof ContentCreator){
+                    ContentCreator obj = (ContentCreator)registredProductors.get(i);
+                    obj.showPodcasts();
+                    alert = "Contet creator";
+                }
+            } 
+        }
+        return alert;
+    }
+
+    public String addAudioToPlaylist(String uName, String playlistName, String pName, String aName){
+        String alert = "";
+        boolean continuar = false, continuar1 = false, continuar2 = false; 
+        for(int i = 0; i<registredProductors.size() && !continuar1; i++){
+            if(registredProductors.get(i).getName().equalsIgnoreCase(pName)){
+                continuar1= true;
+                if(registredProductors.get(i) instanceof Artist){
+                    Artist objP = (Artist)registredProductors.get(i); 
+                    Song chSong = objP.choosenSong(aName);
+                    if(chSong == null){
+                        alert = "The song doesnt exit";
+                        continuar = true;
+                    }
+                    for(int a = 0; a<registeredConsumers.size() && !continuar; a++){
+                        if(registeredConsumers.get(i).getName().equalsIgnoreCase(uName)){
+                            continuar = true;
+                            if(registeredConsumers.get(i) instanceof Standard){
+                                Standard obj = (Standard)registeredConsumers.get(i);
+                                alert = obj.addAudiotoPlaylistSt(playlistName, chSong);
+                            } else if(registeredConsumers.get(i) instanceof Premium){
+                                Premium obj = (Premium)registeredConsumers.get(i);
+                                alert = obj.addAudioToPlaylistPr(playlistName, chSong);
+                            }
+                        }
+                    }
+                }else if(registredProductors.get(i) instanceof ContentCreator){
+                    ContentCreator objP = (ContentCreator)registredProductors.get(i);
+                    Podcast chPodcast = objP.choosenPodcast(aName);
+                    if(chPodcast == null){
+                        alert = "The podcast doesnt exist";
+                        continuar2 = true;
+                    }
+                    for(int b = 0; b<registeredConsumers.size() && !continuar2; b++){
+                        if(registeredConsumers.get(i).getName().equalsIgnoreCase(uName)){
+                            continuar2 = true;
+                            if(registeredConsumers.get(i) instanceof Standard){
+                                Standard obj = (Standard)registeredConsumers.get(i);
+                                alert = obj.addAudiotoPlaylistSt(playlistName, chPodcast);
+                            } else if(registeredConsumers.get(i) instanceof Premium){
+                                Premium obj = (Premium)registeredConsumers.get(i);
+                                alert = obj.addAudioToPlaylistPr(playlistName, chPodcast);
+                            }
+                        }
+                    }
+                }
+            } else {
+                alert = "The productor doesnt exist ";
+            }
+        }
+
+        return alert;
+    }
+   
     public String switchPositions(String uName, String pName, String fSong, String sSong){
         boolean stop = false; 
         String alert = "";

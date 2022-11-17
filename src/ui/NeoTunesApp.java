@@ -85,7 +85,8 @@ public class NeoTunesApp {
             System.out.println(" 1 - Register a Consumer");
             System.out.println(" 2 - Create a Playlist");
             System.out.println(" 3 - Edit a playlist");
-            System.out.println(" 4 - Return to the main menu");
+            System.out.println(" 4 - Add song to playlist");
+            System.out.println(" 5 - Return to the main menu");
             int option3 = read.nextInt();
             read.nextLine();
             switch(option3){
@@ -95,7 +96,9 @@ public class NeoTunesApp {
                     break;
                 case 3: ntApp.editPlaylist();
                     break;
-                case 4: System.out.println("Back to the menu");
+                case 4: 
+                    break;
+                case 5: System.out.println("Back to the menu");
                 continuar2 = false; 
                     break;
                 default:
@@ -264,6 +267,27 @@ public class NeoTunesApp {
         System.out.println(alert);
     }
 
+    public void addAudioToPlaylist(){
+        System.out.println("Type the name of the user wich will add this song");
+        System.out.println("Here are the users");
+        ntManager.showRegisteredUsers();
+        String uName = read.nextLine();
+        System.out.println("Type the name of the playlist which will be added");
+        System.out.println("Here are the Playlist");
+        ntManager.showUserPlaylists(uName);
+        String playlistName = read.nextLine();
+        System.out.println("Type the name or nickname of the Productor");
+        System.out.println("Here are the prodcuctors");
+        ntManager.showProductors();
+        String pName = read.nextLine();
+        String proName = ntManager.showProductorAudio(pName);
+        System.out.println("Here are the audios of the " + proName);
+        System.out.println("Type the name of the audio you want to add ");
+        String aName = read.nextLine();
+        String alert = ntManager.addAudioToPlaylist(uName, playlistName, pName, aName);
+        System.out.println(alert);
+    }
+
     public void editPlaylist(){
         System.out.println("Here are the registered users");
         ntManager.showRegisteredUsers();
@@ -279,7 +303,7 @@ public class NeoTunesApp {
         }
         boolean continar = true;
         while(continar){
-            System.out.println("Digita una de las siguientes opciones ");
+            System.out.println("Choose one of the next options ");
             System.out.println("1 - Remove an item for the playlist");
             System.out.println("2 - Switch positions of songs ");
             System.out.println("3 - Get back to the previous menu");

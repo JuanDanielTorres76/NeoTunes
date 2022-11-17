@@ -112,7 +112,7 @@ public class Standard extends Consumer {
         String alert = "This playlist does not exist";
         boolean continuar = false;
         for(int i = 0 ;i<stPlaylists.length && !continuar; i++){
-            if(stPlaylists[i].getName().equalsIgnoreCase(pName)){
+            if(stPlaylists[i] != null && stPlaylists[i].getName().equalsIgnoreCase(pName)){
                 alert = stPlaylists[i].switchItem(fSong, sSong);
                 continuar = true;
             }
@@ -130,6 +130,21 @@ public class Standard extends Consumer {
         }
     }
 
+    public String addAudiotoPlaylistSt(String playlistName, AudioProduct obj){
+        boolean continuar = false;
+        String alert = "This playlist doesnt exist";
+        if(stPlaylists.length>100){
+            alert = "The user has reached the limit of Songs";
+        } else{
+            for(int i = 0; i<stPlaylists.length && !continuar; i++){
+                if(stPlaylists[i] != null && stPlaylists[i].getName().equalsIgnoreCase(playlistName)){
+                    continuar = true; 
+                    alert = stPlaylists[i].addSong(obj) + stPlaylists[i].getName();
+                }
+            }
+        }
+        return alert; 
+    }
     public int getNumOfAds() {
         return numOfAds;
     }

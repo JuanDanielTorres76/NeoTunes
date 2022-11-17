@@ -29,5 +29,23 @@ public class Artist extends Productor {
         return alert;
     }
 
+    public void showSongs(){
+        for(int i = 0; i<artistSongs.size(); i++){
+            System.out.println( i + " - " + artistSongs.get(i).getName());
+        }
+    }
+
+    public Song choosenSong(String sName){
+        boolean continuar = false;
+        Song obj = null;
+        for(int i = 0; i<artistSongs.size()&& !continuar; i++){
+            if(artistSongs.get(i).getName().equalsIgnoreCase(sName)){
+                obj = artistSongs.get(i);
+                continuar = true;
+            }
+        }
+        return obj; 
+    }
+
     
 }

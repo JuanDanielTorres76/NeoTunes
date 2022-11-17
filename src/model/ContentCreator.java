@@ -19,6 +19,24 @@ public class ContentCreator extends Productor {
         return alert;
     }
 
+    public void showPodcasts(){
+        for(int i = 0; i<contentCreatorPodcasts.size(); i++){
+            System.out.println( i + " - " + contentCreatorPodcasts.get(i).getName());
+        }
+    }
+
+    public Podcast choosenPodcast(String podName){
+        boolean continuar = false;
+        Podcast obj = null;
+        for(int i = 0; i<contentCreatorPodcasts.size()&& !continuar; i++){
+            if(contentCreatorPodcasts.get(i).getName().equalsIgnoreCase(podName)){
+                obj = contentCreatorPodcasts.get(i);
+                continuar = true;
+            }
+        }
+        return obj; 
+    }
+
 
 
     
