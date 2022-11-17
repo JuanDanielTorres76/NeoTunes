@@ -118,6 +118,31 @@ public class Premium extends Consumer{
 
     }
 
+    public String simulateAudioPr(String pName, String sName){
+        String alert = "This playlist doesnt exists";
+        boolean stop = false;
+        for(int i  = 0; i<prPlaylists.size() && !stop; i++){
+            if(prPlaylists.get(i).getName().equalsIgnoreCase(pName)){
+                stop = true;
+                alert = prPlaylists.get(i).simulateAudio(sName);
+            }
+        }
+        return alert;
+    }
+
+    @Override
+    public int countPlayedAudio(String pName, String sName){
+        int option = 4;
+        boolean stop = false;
+        for(int i  = 0; i<prPlaylists.size() && !stop; i++){
+            if(prPlaylists.get(i).getName().equalsIgnoreCase(pName)){
+                stop = true;
+                option = prPlaylists.get(i).countPlayedAudio(sName);
+            }
+        }
+        return option;
+    }
+
 
     public String getLabel() {
         return label;

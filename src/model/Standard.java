@@ -157,7 +157,33 @@ public class Standard extends Consumer {
         }
         return alert;
     }
+
+    public String simulateAudioSt(String pName, String sName){
+        String alert = "This playlist doesnt exists";
+        boolean stop = false;
+        for(int i  = 0; i<stPlaylists.length && !stop; i++){
+            if(stPlaylists[i] != null && stPlaylists[i].getName().equalsIgnoreCase(pName)){
+                stop = true;
+                alert = stPlaylists[i].simulateAudio(sName);
+            }
+        }
+        return alert;
+    }
     
+    @Override
+    public int countPlayedAudio(String pName, String sName){
+        int option = 4;
+        boolean stop = false;
+        for(int i  = 0; i<stPlaylists.length && !stop; i++){
+            if(stPlaylists[i] != null && stPlaylists[i].getName().equalsIgnoreCase(pName)){
+                stop = true;
+                option = stPlaylists[i].countPlayedAudio(sName);
+            }
+        }
+        return option;
+
+    }
+
     public int getNumOfAds() {
         return numOfAds;
     }

@@ -142,6 +142,63 @@ public class Playlist {
         return alert;
     }
 
+    public String simulateAudio(String sName){
+        String alert = "This song doesnt exist";
+        boolean stop = false;
+        for( int i = 0; i<AudioPlaylist.size() && !stop; i++){
+            if(AudioPlaylist.get(i).getName().equalsIgnoreCase(sName)){
+                stop = true;
+                if(AudioPlaylist.get(i) instanceof Song){
+                    alert = "The song " + AudioPlaylist.get(i).getName() + " is being played";
+                } else if(AudioPlaylist.get(i) instanceof Podcast){
+                    alert = "The Podcadst " + AudioPlaylist.get(i).getName() + " is being played";
+                }
+                
+            }
+
+        }
+        return alert;
+    }
+
+    public int countPlayedAudio(String sName){
+        int option = 4;
+        boolean stop = false;
+        for(int i = 0; i<AudioPlaylist.size() && !stop; i++){
+            if(AudioPlaylist.get(i).getName().equalsIgnoreCase(sName)){
+                stop = true;
+                if(AudioPlaylist.get(i) instanceof Song){
+                    Song obj = (Song)AudioPlaylist.get(i);
+                    if(AudioPlaylist.get(i).getName().equalsIgnoreCase(sName)){
+                        if(obj.getKindGenre() == Genre.ROCK){
+                            option = 0;
+                        } else if(obj.getKindGenre() == Genre.POP){
+                            option = 1;
+                        } else if(obj.getKindGenre() == Genre.TRAP){
+                            option = 2; 
+                        } else if(obj.getKindGenre() == Genre.HOUSE){
+                            option = 3;
+                        }
+                    } 
+                } else if(AudioPlaylist.get(i) instanceof Podcast){
+                    Podcast obj = (Podcast)AudioPlaylist.get(i);
+                    if(AudioPlaylist.get(i).getName().equalsIgnoreCase(sName)){
+                        if(obj.getKind() == Category.POLITICS){
+                            option = 5;
+                        } else if(obj.getKind() == Category.ENTERNTAINMENT){
+                            option = 6;
+                        } else if(obj.getKind() == Category.VIDEOGAMES){
+                            option = 7; 
+                        } else if(obj.getKind() == Category.FASHION){
+                            option = 8;
+                        }
+                    } 
+                }
+            }
+        }
+
+        return option;
+    }
+
     public void FillMat(){
         for( int i = 0; i<matriz.length; i++){
             for(int j = 0; j<matriz[0].length; j++){

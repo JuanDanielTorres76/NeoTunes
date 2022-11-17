@@ -9,6 +9,8 @@ public class NeoTunesManager {
     protected ArrayList <Consumer> registeredConsumers;
     protected ArrayList <Productor> registredProductors;
     protected ArrayList <AudioProduct> audioProducts;
+    protected int playedGenres[] = new int[4];
+    protected int playedCategories[] = new int[4];
 
     //relations 
     public NeoTunesManager(String name, String id){
@@ -17,6 +19,13 @@ public class NeoTunesManager {
         registeredConsumers = new ArrayList<Consumer>();
         registredProductors = new ArrayList<Productor>();
         audioProducts = new ArrayList<AudioProduct>();
+    }
+
+    public void fillCounters(){
+        for(int i = 0; i<playedGenres.length; i++){
+            playedGenres[i] = 0;
+            playedCategories[i] = 0;
+        }
     }
 
     public String addConsumer(String name, String nickName, String date, String id, String url, int numOfAds){
@@ -345,6 +354,110 @@ public class NeoTunesManager {
                 }
             }
         }
+        return alert;
+    }
+
+    public String SimulateAudioPr(String pName, String aName){
+        String alert = "This produtor doesnt exists";
+        int option = 4; 
+        boolean stop = false;
+        for(int i = 0; i<registredProductors.size() && !stop; i++){
+            if(registredProductors.get(i).getName().equalsIgnoreCase(pName)){
+                stop = true;
+                if(registredProductors.get(i) instanceof Artist){
+                    Artist obj = (Artist)registredProductors.get(i);
+                    alert = obj.simulateSong(aName);
+                    option = obj.CountPlayedSong(aName);
+                    if(option == 0){
+                        playedGenres[option]++; 
+                    }else if( option ==  1){
+                        playedGenres[option]++;
+                    }else if( option ==  2){
+                        playedGenres[option]++;
+                    }else if( option ==  3){
+                        playedGenres[option]++;
+                    }else if( option ==  4){
+                        alert = "Couldnt register playback of audio";
+                    }
+                } else if(registredProductors.get(i) instanceof ContentCreator){
+                    ContentCreator obj = (ContentCreator)registredProductors.get(i);
+                    alert = obj.simulatePodcast(aName);
+                    option = obj.countPlayedPodcasts(aName);
+                    if(option == 0){
+                        playedCategories[option]++; 
+                    }else if( option ==  1){
+                        playedCategories[option]++;
+                    }else if( option ==  2){
+                        playedCategories[option]++;
+                    }else if( option ==  3){
+                        playedCategories[option]++;
+                    }else if( option ==  4){
+                        alert = "Couldnt register playback of podcast";
+                    }
+
+                }
+            }
+        }
+        return alert;
+    }
+
+    public String simulateAudioCm(String cName, String pName, String sName){
+        String alert = "This user doesnt exists";
+        int option = 4;
+        boolean stop = false;
+        for(int i = 0; i<registeredConsumers.size() && !stop; i++){
+            if(registeredConsumers.get(i).getName().equalsIgnoreCase(cName)){
+                stop = true;
+                if(registeredConsumers.get(i) instanceof Standard){
+                    Standard obj = (Standard)registeredConsumers.get(i);
+                    alert = obj.simulateAudioSt(pName, sName);
+                    option = obj.countPlayedAudio(pName, sName);
+                    if(option == 0){
+                        playedGenres[option]++; 
+                    }else if( option ==  1){
+                        playedGenres[option]++;
+                    }else if( option ==  2){
+                        playedGenres[option]++;
+                    }else if( option ==  3){
+                        playedGenres[option]++;
+                    }else if( option ==  4){
+                        alert = "Couldnt register playback of audio";
+                    }else if( option ==  5){
+                        playedCategories[option]++;
+                    }else if( option ==  6){
+                        playedCategories[option]++;
+                    }else if( option ==  7){
+                        playedCategories[option]++;
+                    }else if( option ==  8){
+                        playedCategories[option]++;
+                    }
+                } else if(registeredConsumers.get(i) instanceof Premium){
+                    Premium obj = (Premium)registeredConsumers.get(i);
+                    alert = obj.simulateAudioPr(pName, sName);
+                    option = obj.countPlayedAudio(pName, sName);
+                    if(option == 0){
+                        playedGenres[option]++; 
+                    }else if( option ==  1){
+                        playedGenres[option]++;
+                    }else if( option ==  2){
+                        playedGenres[option]++;
+                    }else if( option ==  3){
+                        playedGenres[option]++;
+                    }else if( option ==  4){
+                        alert = "Couldnt register playback of audio";
+                    }else if( option ==  5){
+                        playedCategories[option]++;
+                    }else if( option ==  6){
+                        playedCategories[option]++;
+                    }else if( option ==  7){
+                        playedCategories[option]++;
+                    }else if( option ==  8){
+                        playedCategories[option]++;
+                    }
+                }
+            }
+        }
+
         return alert;
     }
 

@@ -37,6 +37,36 @@ public class ContentCreator extends Productor {
         return obj; 
     }
 
+    public String simulatePodcast(String aName){
+        String alert = "This Podcats is not in the library of the Content creator";
+        boolean stop = false;
+        for(int i = 0; i<contentCreatorPodcasts.size() && !stop; i++){
+            if(contentCreatorPodcasts.get(i).getName().equalsIgnoreCase(aName)){
+                alert = "The Podcast " + contentCreatorPodcasts.get(i).getName() + " is being played";
+            }
+        }
+        return alert;
+    }
+
+    public int countPlayedPodcasts(String aName){
+        boolean stop = false;
+        int option = 4;
+        for(int i = 0; i<contentCreatorPodcasts.size() && !stop; i++){
+            if(contentCreatorPodcasts.get(i).getName().equalsIgnoreCase(aName)){
+                if(contentCreatorPodcasts.get(i).getKind() == Category.POLITICS){
+                    option = 0;
+                } else if(contentCreatorPodcasts.get(i).getKind() == Category.ENTERNTAINMENT){
+                    option = 1;
+                } else if(contentCreatorPodcasts.get(i).getKind() == Category.VIDEOGAMES){
+                    option = 2; 
+                } else if(contentCreatorPodcasts.get(i).getKind() == Category.FASHION){
+                    option = 3;
+                }
+            } 
+        } 
+        return option;
+    }
+
 
 
     

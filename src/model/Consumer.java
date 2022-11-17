@@ -6,4 +6,6 @@ public abstract class Consumer extends User{
     public Consumer(String name, String nickName, String date, String id, String url){
         super(name, nickName, date, id, url);
     }
+
+    public abstract int countPlayedAudio(String playlistName, String audioName);
 }

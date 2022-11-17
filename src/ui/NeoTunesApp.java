@@ -8,9 +8,9 @@ public class NeoTunesApp {
     public static Scanner read = new Scanner(System.in);
 
     //atributes 
-    private static NeoTunesApp ntApp; 
+    private static NeoTunesApp ntApp;
 
-    //relations
+    //methods
     private NeoTunesManager ntManager; 
 
     public NeoTunesApp(String name, String id){
@@ -87,7 +87,8 @@ public class NeoTunesApp {
             System.out.println(" 3 - Edit a playlist");
             System.out.println(" 4 - Add song to playlist");
             System.out.println(" 5 - Share Playlist");
-            System.out.println(" 6 - Return to the main menu");
+            System.out.println(" 6 - Simulate playback of an audio");
+            System.out.println(" 7 - Return to the main menu");
             int option3 = read.nextInt();
             read.nextLine();
             switch(option3){
@@ -99,9 +100,11 @@ public class NeoTunesApp {
                     break;
                 case 4: ntApp.addAudioToPlaylist();
                     break;
-                case 5: 
+                case 5: ntApp.sharePlaylist();
                     break;
-                case 6: System.out.println("Back to the menu");
+                case 6: ntApp.simulatePlaybackOfAudio();
+                    break;
+                case 7: System.out.println("Back to the menu");
                 continuar2 = false; 
                     break;
                 default:
@@ -362,6 +365,58 @@ public class NeoTunesApp {
         String playlistName = read.nextLine();
         String alert = ntManager.sharePlaylist(uName, playlistName);
         System.out.println(alert);
+
+    }
+
+    public void simulatePlaybackOfAudio(){
+        boolean continuar = true;
+        while(continuar){
+            System.out.println("Choose one fo the next options");
+            System.out.println("1 - To simulate the playback of an audio from an Productor");
+            System.out.println("2 - To imulate the playback of an audio from an Consumer ");
+            System.out.println("3- To return to the previous menu ");
+            int option = read.nextInt();
+            switch(option){
+                case 1:
+                    System.out.println("Type the name of the productor which will simulate the playback of the song");
+                    System.out.println("Here are the productors");
+                    ntManager.showProductors();
+                    String pName = read.nextLine();
+                    System.out.println("Type the name of the song which will be simulated");
+                    String proName = ntManager.showProductorAudio(pName);
+                    System.out.println("Here are the audios of the " + proName);
+                    System.out.println("Type the name of the audio you want to simulate ");
+                    String aName = read.nextLine();
+                    String alert = ntManager.SimulateAudioPr(pName, aName);
+                    System.out.println(alert);
+                    break;
+                case 2:
+                    System.out.println("Type the name of the consumer which will simulate the playback of the song");
+                    System.out.println("Here are the consumers");
+                    ntManager.showRegisteredUsers();
+                    String cName = read.nextLine();
+                    System.out.println("Type the name ofthe playlist of the consumer");
+                    System.out.println("Here are the name of the playlists");
+                    ntManager.showUserPlaylists(cName);
+                    pName = read.nextLine();
+                    System.out.println("Here are the name of the songs");
+                    ntManager.showAudioOfPlaylist(cName, pName);
+                    System.out.println("Type the name of the song which will be played");
+                    String sName = read.nextLine();
+                    String alert1 = ntManager.simulateAudioCm(cName, pName, sName);
+                    System.out.println(alert1); 
+                    break;
+                case 3: System.out.println("Heading to the previous menu ");
+                    continuar = false;
+                    break;
+                default: System.out.println("Invalid option");
+                    break;
+        }
+
+        }
+        
+        
+
 
     }
 
