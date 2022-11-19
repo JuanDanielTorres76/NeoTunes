@@ -13,6 +13,13 @@ public class NeoTunesApp {
     //methods
     private NeoTunesManager ntManager; 
 
+    /**
+     * Metodo constructor para la calse Main de la aplicacion 
+     * <b>pre: </b> atributos declarados 
+     * <b>post: </b> Se crea un objeto de la clase NeoTunesApp
+     * @param name EL nombre del juego esta asignado predeterminadaente
+     * @param id EL id del juego esta asigando predetermindamente
+     */
     public NeoTunesApp(String name, String id){
         ntManager = new NeoTunesManager(name, id);
     }
@@ -22,6 +29,11 @@ public class NeoTunesApp {
         menu();
     }
 
+    /**
+     * * Metodo para crear un objeto de la clase NeoTunesApp
+     * <b>pre: </b> atributos asignados predeterminadamente
+     * <b>post: </b> Se crea un objeto de la clase NeoTunesApp
+     */
     public static void addManager(){    
         String name = "NeoTunes";
         String id = "123456789";
@@ -29,6 +41,11 @@ public class NeoTunesApp {
 
     }
     
+    /**
+     * Metodo para la inicializacion del menu de la aplicacion
+     * <b>pre: </b> Intanciacion de los objetos de la controladora y la calse Main
+     * <b>post: </b> Inicializacion y muestra por pantalla de las opciones del menu 
+     */
     public static void menu(){
         boolean continuar = true; 
         while(continuar){
@@ -52,6 +69,11 @@ public class NeoTunesApp {
         }
     }
 
+    /**
+     * Metodo que muestra po rpantalla las opciones que puede realizar un usuario de tipo Productor
+     * <b>pre: </b> Invocacion del metodo por eleccion del usauario
+     * <b>post: </b> Inicializacion y muestra por pantalla de las opciones del menu del usuario productor
+     */
     public void productorMenu(){
         boolean continar1 = true; 
         while(continar1){
@@ -79,6 +101,11 @@ public class NeoTunesApp {
         }
     }
 
+    /**
+     * Metodo que muetra por pantalla las opciones que puede realizar un usaurio de tipo Consumer 
+     * <b>pre: </b> Invocacion del metodo por eleccion del usauario
+     * <b>post: </b> Inicializacion y muestra por pantalla de las opciones del menu del usuario Consumer
+     */
     public void consumerMenu(){
         boolean continuar2 = true;
         while(continuar2){
@@ -118,6 +145,11 @@ public class NeoTunesApp {
         }
     }
 
+    /**
+     * Metodo que permite registrar un usuario de tipo productor
+     * <b>pre: </b> Invocacion del metodo por el usuario 
+     * <b>post: </b> registro del usuario tipo productor
+     */
     public void registerProductor(){
         System.out.println("Type the name of the Prodcutor ");
         String name = read.nextLine(); 
@@ -157,6 +189,11 @@ public class NeoTunesApp {
 
     }
 
+    /**
+     *  Metodo que permite registrar un usuario de tipo consumer
+     *  <b>pre: </b> Invocacion del metodo por el usuario 
+     * <b>post: </b> registro del usuario tipo consumer
+     */
     public void registerConsumer(){
         System.out.println("type the name of the consumer");
         String name = read.nextLine(); 
@@ -190,6 +227,11 @@ public class NeoTunesApp {
 
     }
 
+    /**
+     * Metodo que permite registrar uun objeto tipo SONG
+     * <b>pre: </b> Invocacion del metodo por el usuario 
+     * <b>post: </b> instanciacion de un objeto de la clase SONG
+     */
     public void registerSong(){
         System.out.println("Type the name of it");
         String name = read.nextLine();
@@ -232,6 +274,11 @@ public class NeoTunesApp {
 
     }
 
+    /**
+     * Metodo que permite registrar un objeto tipo PODCAST
+     * <b>pre: </b> Invocacion del metodo por el usuario 
+     * <b>post: </b> instanciacion de un objeto tipo PODCAST
+     */
     public void registerPodcast(){
         System.out.println("Type the name of it");
         String name = read.nextLine();
@@ -267,6 +314,11 @@ public class NeoTunesApp {
         System.out.println(alert);
     }
 
+    /**
+     * Metodo que permite registrar un objeto tipo PLAYLIST
+     * <b>pre: </b> Invocacion del metodo por el usuario 
+     * <b>post: </b> instanciacion de un objeto tipo PLAYLIST 
+     */
     public void createPlaylist(){
         System.out.println(" Name the playlist");
         String name = read.nextLine();
@@ -276,6 +328,11 @@ public class NeoTunesApp {
         System.out.println(alert);
     }
 
+    /**
+     * Metodo que permite registrar un objeto tipo AUDIOPRODUCT 
+     * <b>pre: </b> Invocacion del metodo por el usuario 
+     * <b>post: </b> objeto AUDIOPRODUCT añadido a clase PLAYLIST 
+     */
     public void addAudioToPlaylist(){
         System.out.println("Type the name of the user which will add this song");
         System.out.println("Here are the users");
@@ -297,6 +354,11 @@ public class NeoTunesApp {
         System.out.println(alert);
     }
 
+    /**
+     * Metodo que permite editar un tipo de objeto tipo PLAYLIST
+     * <b>pre: </b> Invocacion del metodo por el usuario 
+     * <b>post: </b> edicion de un objeto tipo PLAYLIST
+     */
     public void editPlaylist(){
         System.out.println("Here are the registered users");
         ntManager.showRegisteredUsers();
@@ -358,6 +420,11 @@ public class NeoTunesApp {
 
     }
 
+    /**
+     * Metodo que permite compartir un objeto tipo PLAYLIST
+     * <b>pre: </b> Invocacion del metodo por el usuario 
+     * <b>post: </b> retorno de codigo que permite compartir objeto tipo PLAYLIST 
+     */
     public void sharePlaylist(){
         System.out.println("Type the name of the user which will share this song");
         System.out.println("Here are the users");
@@ -372,6 +439,11 @@ public class NeoTunesApp {
 
     }
 
+    /**
+     * Metodo que permite simular la reproduccion de un obejto tipo AUDIOPORDUCT
+     * <b>pre: </b> Invocacion del metodo por el usuario 
+     * <b>post: </b> registro de simulacion añadido a clase registradora.
+     */
     public void simulatePlaybackOfAudio(){
         boolean continuar = true;
         while(continuar){
@@ -424,6 +496,11 @@ public class NeoTunesApp {
 
     }
 
+    /**
+     * Metodo que permite simular la compra de un objeto tipo SONG
+     * <b>pre: </b> Invocacion del metodo por el usuario 
+     * <b>post: </b> registro de la compra en la calse STORE
+     */
     public void buySong(){
         System.out.println("Type the name of the artist which you want to buy the song of");
         System.out.println("Here are the artists");
@@ -438,6 +515,11 @@ public class NeoTunesApp {
         System.out.println(alert);
     }
 
+    /**
+     * Metodo que permite motsrtrar los registros guardados
+     * <b>pre: </b> Invocacion del metodo por el usuario 
+     * <b>post: </b> mostrar por pantalla de los registros
+     */
     public void generateInforms(){
         boolean continuar = true;
         while(continuar){
@@ -475,11 +557,11 @@ public class NeoTunesApp {
                     break;
                 case 9: ntApp.podiumPodcast();
                     break;
-                case 10:
+                case 10: ntApp.mostSelledGenre();
                     break;
-                case 11: 
+                case 11: ntApp.mostSelledSong();
                     break;
-                case 12:
+                case 12: ntApp.showSalesAndSongsForEachGenre();
                     break;
                 case 13: System.out.println("Heading back to the previous menu");
                 continuar = false;
@@ -491,14 +573,22 @@ public class NeoTunesApp {
         
     }
 
+    /**
+     * Metodo que permite mostrar el total de reporducciones en la app
+     * <b>pre: </b> Invocacion del metodo por el usuario 
+     * <b>post: </b> muestra del total de reproduccione spor pantalla
+     */
     public void showTotalAmountPlays(){
-        // Count plays, add method to SImulate audio
         int totalValue = ntManager.totalPlays();
         System.out.println("The total amount of played audios is " + totalValue);
     }
 
+    /**
+     * Metodo que permite mostrar el genero mas escuchado por un usuario
+     * <b>pre: </b> Invocacion del metodo por el usuario 
+     * <b>post: </b> muestra el genero mas escuchado por un usuario por pantalla
+     */
     public void showMostHearedGenreOfUser(){
-        // Count plays, add method to SImulate audio
         System.out.println("Type the name of the user");
         System.out.println("Here are the users");
         ntManager.showRegisteredUsers(); 
@@ -508,12 +598,22 @@ public class NeoTunesApp {
 
     }
 
+    /**
+     * Metodo que permite mostrar el genero mas escuchado en la pltaforma 
+     * <b>pre: </b> Invocacion del metodo por el usuario 
+     * <b>post: </b> muestra el genero que mas se escucho por pantalla en la app
+     */
     public void showMostHearedGenre(){
         // Count plays, add method to SImulate audio
         String alert = ntManager.mostHearedGenre();
         System.out.println(alert);
     }
 
+    /**
+     * Metodo que permite mostrar la categoria mas escuchada por un usuario
+     * <b>pre: </b> Invocacion del metodo por el usuario 
+     * <b>post: </b> muestra la categoria que mas escucho un usuario por pantalla
+     */
     public void showMostHearedCategoryOfUser(){
         // Count plays, add method to SImulate audio
         System.out.println("Type the name of the user");
@@ -524,37 +624,72 @@ public class NeoTunesApp {
         System.out.println(alert);
     }
 
+    /**
+     * Metodo que permite mostrar la categoria mas escuchada en la plataforma
+     * <b>pre: </b> Invocacion del metodo por el usuario 
+     * <b>post: </b> imuestra la categoria mas se escucho en la plataforma por pantalla 
+     */
     public void showMostHearedCategory(){
         // Count plays, add method to SImulate audio
         String alert = ntManager.mostHearedCategory();
         System.out.println(alert); 
     }
 
+    /**
+     * Metodo quue muestra el top de los artistas mas escuchados
+     * <b>pre: </b> Invocacion del metodo por el usuario 
+     * <b>post: </b> muestra el top de los 5 artistas mas escuchados
+     */
     public void artsistPodium(){
         String podio = ntManager.artistPodium();
         System.out.println(podio);
     }
 
+    /**
+     * Metodo que muestra el top de los Creadores de contenido mas escuchados
+     * <b>pre: </b> Invocacion del metodo por el usuario 
+     * <b>post: </b> muestra el top de los 5 creadores de contenido mas escuchados
+     */
     public void contentCPodium(){
         String podio = ntManager.contentCreatorPodium();
         System.out.println(podio);
     }
 
+    /**
+     * Metodo que muestra el top de las canciones mas reporducidas.
+     * <b>pre: </b> Invocacion del metodo por el usuario 
+     * <b>post: </b> muestra el top de las 10 canciones mas escuhadas
+     */
     public void podiumSongs(){
         String podio = ntManager.songsPodium();
         System.out.println(podio);
     }
 
+    /**
+     * Metodo que muestra el top de los podcasts mas escuchados
+     * <b>pre: </b> Invocacion del metodo por el usuario 
+     * <b>post: </b> muestra el top de los 10 podcasts mas escuchados
+     */
     public void podiumPodcast(){
         String podio = ntManager.podcastPodium();
         System.out.println(podio);
     }
     
+    /**
+     * Metodo que muestra el genero mas escuchado en la pltaforma
+     * <b>pre: </b> Invocacion del metodo por el usuario 
+     * <b>post: </b> muestra el genero mas escuchado
+     */
     public void mostSelledGenre(){
         String alert = ntManager.mostSelledGenre();
         System.out.println(alert);
     }
 
+    /**
+     * Metodo que muetsra las ventas y preci acumulado de cada genero
+     * <b>pre: </b> Invocacion del metodo por el usuario 
+     * <b>post: </b> muestra la informacion relacionado a las ventas de cada genero
+     */
     public void showSalesAndSongsForEachGenre(){
         System.out.println("Choose one of the next options");
         System.out.println(" 1 - ROCK");
@@ -578,6 +713,16 @@ public class NeoTunesApp {
         String alert = ntManager.salesSongsGenre(option);
         System.out.println(alert);
 
+    }
+
+    /**
+     * Metodo que muestra la cancion mas vendida 
+     * <b>pre: </b> Invocacion del metodo por el usuario 
+     * <b>post: </b> muestra la cancion mas vendida junto con el numero de ventas y precio acumulado. 
+     */
+    public void mostSelledSong(){
+        String alert = ntManager.mostSelledSong();
+        System.out.println(alert);
     }
 
 }

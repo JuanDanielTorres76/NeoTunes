@@ -683,6 +683,12 @@ public class NeoTunesManager {
         String alert = npStore.infoGenre(option);
         return alert;
     }
+
+    public String mostSelledSong(){
+        String alert = npStore.mostSelledSong(); 
+        return alert;
+    }
+
     public String getId() {
         return id;
     }
