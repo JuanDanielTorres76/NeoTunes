@@ -37,7 +37,7 @@ public class ContentCreator extends Productor {
         return obj; 
     }
 
-    public String simulatePodcast(String aName){
+    public String simulateAudio(String name, String aName){
         String alert = "This Podcats is not in the library of the Content creator";
         boolean stop = false;
         for(int i = 0; i<contentCreatorPodcasts.size() && !stop; i++){
@@ -66,7 +66,6 @@ public class ContentCreator extends Productor {
         } 
         return option;
     }
-
 
 
     

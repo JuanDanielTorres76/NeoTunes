@@ -9,10 +9,14 @@ public class NeoTunesManager {
     protected ArrayList <Consumer> registeredConsumers;
     protected ArrayList <Productor> registredProductors;
     protected ArrayList <AudioProduct> audioProducts;
-    protected int playedGenres[] = new int[4];
-    protected int playedCategories[] = new int[4];
-    private int numOfSales;
-    private double valueOfSales; 
+    protected int playedGenres[];
+    protected int playedCategories[];
+    private int numPlays;
+    protected String aPodium[];
+    protected String ccPodium[];
+    protected String sPodium[];
+    protected String pcPodium[];
+    protected Store npStore;
 
     //relations 
     public NeoTunesManager(String name, String id){
@@ -21,8 +25,15 @@ public class NeoTunesManager {
         registeredConsumers = new ArrayList<Consumer>();
         registredProductors = new ArrayList<Productor>();
         audioProducts = new ArrayList<AudioProduct>();
-        numOfSales = 0;
-        valueOfSales = 0;
+        playedGenres = new int[4];
+        playedCategories = new int[4];
+        fillCounters();
+        numPlays = 0;
+        aPodium = new String[10];
+        ccPodium = new String[10];
+        sPodium = new String [15];
+        pcPodium = new String [15];
+        npStore = new Store(name);
     }
 
     public void fillCounters(){
@@ -379,7 +390,7 @@ public class NeoTunesManager {
                 stop = true;
                 if(registredProductors.get(i) instanceof Artist){
                     Artist obj = (Artist)registredProductors.get(i);
-                    alert = obj.simulateSong(aName);
+                    alert = obj.simulateAudio(pName, aName);
                     option = obj.CountPlayedSong(aName);
                     if(option == 0){
                         playedGenres[option]++; 
@@ -394,7 +405,7 @@ public class NeoTunesManager {
                     }
                 } else if(registredProductors.get(i) instanceof ContentCreator){
                     ContentCreator obj = (ContentCreator)registredProductors.get(i);
-                    alert = obj.simulatePodcast(aName);
+                    alert = obj.simulateAudio(pName, aName);
                     option = obj.countPlayedPodcasts(aName);
                     if(option == 0){
                         playedCategories[option]++; 
@@ -423,7 +434,7 @@ public class NeoTunesManager {
                 stop = true;
                 if(registeredConsumers.get(i) instanceof Standard){
                     Standard obj = (Standard)registeredConsumers.get(i);
-                    alert = obj.simulateAudioSt(pName, sName);
+                    alert = obj.simulateAudio(pName, sName);
                     option = obj.countPlayedAudio(pName, sName);
                     if(option == 0){
                         playedGenres[option]++; 
@@ -446,7 +457,7 @@ public class NeoTunesManager {
                     }
                 } else if(registeredConsumers.get(i) instanceof Premium){
                     Premium obj = (Premium)registeredConsumers.get(i);
-                    alert = obj.simulateAudioPr(pName, sName);
+                    alert = obj.simulateAudio(pName, sName);
                     option = obj.countPlayedAudio(pName, sName);
                     if(option == 0){
                         playedGenres[option]++; 
@@ -482,18 +493,9 @@ public class NeoTunesManager {
                 stop = true;
                 if(registredProductors.get(i) instanceof Artist){
                     Artist obj = (Artist)registredProductors.get(i);
-                    alert = obj.buySong(sName);
-                    double price = obj.addTransaction(sName);
-                    boolean transction = obj.addSale(sName);
-                    int numOfSales = getNumOfSales();
-                    if(transction == true ){
-                        numOfSales++;
-                        setNumOfSales(numOfSales);
-                        double partialValue = getValueOfSales();
-                        valueOfSales = partialValue + price;
-                        setValueOfSales(valueOfSales);
-                    }
-                    
+                    Boolean validation = obj.buySong(sName);
+                    Song obj1 = obj.choosenSong(sName);
+                    alert = npStore.addTransaction(obj1, validation);
                 } else {
                     alert = "This productor is not an artist";
                 }
@@ -503,6 +505,184 @@ public class NeoTunesManager {
         return alert;
     }
 
+    public int totalPlays(){
+        int value = getNumPlays(), conValue = 0, proValue = 0, value1= 0;
+        for(int i = 0; i<registredProductors.size() ; i++){
+            proValue = registredProductors.get(i).getCatergoryPlays() + registredProductors.get(i).getGenrePlays();
+        
+        }
+        for(int i = 0; i<registeredConsumers.size() ; i++){
+            conValue = registeredConsumers.get(i).getCatergoryPlays() + registeredConsumers.get(i).getGenrePlays();
+        }
+        value1 = value + conValue+proValue; 
+        setNumPlays(value1);
+        return value1;
+    }
+
+    public String mostHearedGenreUsr(String uName){
+        String alert = "This user doesnt exists";
+        Boolean stop = true;
+        for(int i = 0; i<registeredConsumers.size() && !stop ; i++){
+            if(registeredConsumers.get(i).getName().equalsIgnoreCase(uName)){
+                if(registeredConsumers.get(i) instanceof Standard){
+                    Standard obj = (Standard)registeredConsumers.get(i);
+                    alert = "The most heared genre of the user is : " + obj.mostHearedGenreUsr() + " with " + obj.mostHearedGenreValueCon() + "reproductions";
+                } else if(registeredConsumers.get(i) instanceof Premium){
+                    Premium obj = (Premium)registeredConsumers.get(i);
+                    alert = "The most heared genre of the user is : " + obj.mostHearedGenreUsr() + " with " + obj.mostHearedGenreValueCon() + "reproductions";
+                } 
+            }
+        }
+        return alert;
+    }
+
+    public String mostHearedGenre(){
+        String alert = "", genre = "";
+        int value = 0, conValue = 0, proValue = 0;
+        for(int i = 0; i<registeredConsumers.size(); i++){
+            conValue += registeredConsumers.get(i).getGenrePlays();
+            genre = registeredConsumers.get(i).mostHearedGenreUsr();
+        }
+        for(int i = 0; i<registredProductors.size(); i++){
+            proValue += registredProductors.get(i).getGenrePlays();
+        }
+        value = conValue + proValue;
+        alert = "The most heared genre in the platform is" + genre + " with " + value + " reproductions";
+        return alert;
+    }
+
+    public String mostHearedCategoryUser(String uName){
+        String alert = "This user doesnt exists";
+        Boolean stop = true;
+        for(int i = 0; i<registeredConsumers.size() && !stop ; i++){
+            if(registeredConsumers.get(i).getName().equalsIgnoreCase(uName)){
+                if(registeredConsumers.get(i) instanceof Standard){
+                    Standard obj = (Standard)registeredConsumers.get(i);
+                    alert = "The most heared category of the user is : " + obj.mostHearedCategoryUsr() + " with " + obj.mostHearedCategoryValueCon() + "reproductions";
+                } else if(registeredConsumers.get(i) instanceof Premium){
+                    Premium obj = (Premium)registeredConsumers.get(i);
+                    alert = "The most heared category of the user is : " + obj.mostHearedCategoryUsr() + " with " + obj.mostHearedCategoryValueCon() + "reproductions";
+                } 
+            }
+        }
+        return alert;
+    }
+
+    public String mostHearedCategory(){
+        String alert = "", category = "";
+        int value = 0, conValue = 0, proValue = 0;
+        for(int i = 0; i<registeredConsumers.size(); i++){
+            conValue += registeredConsumers.get(i).getCatergoryPlays();
+            category = registeredConsumers.get(i).mostHearedCategoryUsr();
+        }
+        for(int i = 0; i<registredProductors.size(); i++){
+            proValue += registredProductors.get(i).getCatergoryPlays();
+        }
+        value  = proValue + conValue;
+        alert = "The most heared category in the platform is" + category + " with " + value + " reproductions";
+
+        return alert;
+    }
+
+    public String artistPodium(){
+        String artistPodium = "";
+        ArrayList<Productor> podium = registredProductors;
+        for(int i = 0; i<podium.size(); i++){
+            if(registredProductors.get(i) instanceof Artist){
+                for(int j = i; j > 0 ; j--){
+                    if(podium.get(j).getTimesPlayed() > podium.get(j-1).getTimesPlayed()){
+                        Productor tmp = podium.get(j);
+                        podium.set(j, podium.get(j-1));
+                        podium.set(j-1, tmp);
+                    }
+                }
+            }
+            
+        }
+        for(int i = 0; i<5 ; i++){
+            aPodium[i] = "The artist " + podium.get(i).getName() + " has " + podium.get(i).getTimesPlayed() + " reproductions";
+            artistPodium += aPodium[i];
+        }
+        return artistPodium; 
+    }
+
+    public String contentCreatorPodium(){
+        String contentCPodium = "";
+        ArrayList<Productor> podium = registredProductors;
+        for(int i = 0; i<podium.size(); i++){
+            if(registredProductors.get(i) instanceof ContentCreator){
+                for(int j = i; j > 0 ; j--){
+                    if(podium.get(j).getTimesPlayed() > podium.get(j-1).getTimesPlayed()){
+                        Productor tmp = podium.get(j);
+                        podium.set(j, podium.get(j-1));
+                        podium.set(j-1, tmp);
+                    }
+                }
+            }
+        }
+        for(int i = 0; i<5 ; i++){
+            ccPodium[i] = "The artist " + podium.get(i).getName() + " has " + podium.get(i).getTimesPlayed() + " reproductions";
+            contentCPodium += ccPodium[i];
+        }
+        return contentCPodium;
+    }
+
+    public String songsPodium(){
+        String songPodium = "";
+        ArrayList<AudioProduct> soPodium = audioProducts;
+        for(int i = 0; i<soPodium.size(); i++){
+            if(audioProducts.get(i) instanceof Song){
+                for(int j = i; j>0; j--){
+                    if(soPodium.get(j).getTimesPlayed() > soPodium.get(j-1).getTimesPlayed()){
+                        AudioProduct tmp = soPodium.get(j);
+                        soPodium.set(j, soPodium.get(j-1));
+                        soPodium.set(j-1, tmp);
+                    }
+                }
+            }
+        }
+        for(int i = 0; i<10; i++){
+            if(soPodium.get(i) instanceof Song){
+                Song obj = (Song)soPodium.get(i);
+                sPodium[i] = "The Song " + soPodium.get(i).getName() + " of the genre " + obj.getKindGenre() + " has " + soPodium.get(i).getTimesPlayed() + " reproductions";
+            }
+            
+        }
+        return songPodium; 
+    }
+
+    public String podcastPodium(){
+        String podcastPodium = "";
+        ArrayList<AudioProduct> poPodium = audioProducts;
+        for(int i = 0; i<poPodium.size(); i++){
+            if(audioProducts.get(i) instanceof Podcast){
+                for(int j = i; j>0; j--){
+                    if(poPodium.get(j).getTimesPlayed() > poPodium.get(i).getTimesPlayed()){
+                        AudioProduct tmp = poPodium.get(j);
+                        poPodium.set(j, poPodium.get(j-1));
+                        poPodium.set(j-1, tmp);
+                    }
+                }
+            }
+        }
+        for(int i = 0; i<10; i++){
+            if(poPodium.get(i) instanceof Podcast){
+                Podcast obj = (Podcast)poPodium.get(i);
+                pcPodium[i] = "The podcast " + poPodium.get(i).getName() + "of the category " + obj.getKind() + " has " + poPodium.get(i).getTimesPlayed() + " reproductions";
+            }
+        }
+        return podcastPodium;
+    }
+
+    public String mostSelledGenre(){
+        String alert = npStore.mostSelledGenre();
+        return alert;
+    }
+
+    public String salesSongsGenre(int option){
+        String alert = npStore.infoGenre(option);
+        return alert;
+    }
     public String getId() {
         return id;
     }
@@ -518,21 +698,12 @@ public class NeoTunesManager {
     public void setName(String name) {
         this.name = name;
     }
-
-    public int getNumOfSales() {
-        return numOfSales;
+    public int getNumPlays() {
+        return numPlays;
     }
 
-    public void setNumOfSales(int numOfSales) {
-        this.numOfSales = numOfSales;
-    }
-
-    public double getValueOfSales() {
-        return valueOfSales;
-    }
-
-    public void setValueOfSales(double valueOfSales) {
-        this.valueOfSales = valueOfSales;
+    public void setNumPlays(int numPlays) {
+        this.numPlays = numPlays;
     }
     
 }

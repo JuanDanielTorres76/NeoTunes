@@ -6,6 +6,7 @@ public abstract class AudioProduct {
     private String name; 
     private double length; 
     private String url;
+    private int timesPlayed;
 
 
     //methods
@@ -13,6 +14,7 @@ public abstract class AudioProduct {
         this.name = name;
         this.length = length;
         this.url = url;
+        timesPlayed = 0;
     }
     
     public String getName() {
@@ -26,6 +28,14 @@ public abstract class AudioProduct {
     
     public String getUrl() {
         return url;
+    }
+
+    public int getTimesPlayed() {
+        return timesPlayed;
+    }
+
+    public void setTimesPlayed(int timesPlayed) {
+        this.timesPlayed = timesPlayed;
     }
 
 }

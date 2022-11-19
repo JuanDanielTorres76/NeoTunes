@@ -9,7 +9,7 @@ public class Playlist {
     
     private String name; 
     private String code; 
-    protected int matriz[][] = new int[6][6];
+    protected int matriz[][];
 
 
 
@@ -20,7 +20,8 @@ public class Playlist {
     public Playlist(String name){
         this.name = name;
         FillMat();
-        code = "0";    
+        code = "0";   
+        matriz = new int[6][6]; 
     }
 
     public int countPodcats(){

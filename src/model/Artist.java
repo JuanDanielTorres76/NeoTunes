@@ -47,7 +47,7 @@ public class Artist extends Productor {
         return obj; 
     }
 
-    public String simulateSong(String aName){
+    public String simulateAudio(String name, String aName){
         String alert = "This song is not in the library of the artist";
         boolean stop = false;
         for(int i = 0; i<artistSongs.size() && !stop; i++){
@@ -77,16 +77,14 @@ public class Artist extends Productor {
         return option;
     }
 
-    public String buySong(String sName){
-        String alert = "This song is not in the library of the artist";
+    public boolean buySong(String sName){
         boolean stop = false;
         for(int i = 0; i<artistSongs.size() && !stop; i++){
             if(artistSongs.get(i).getName().equalsIgnoreCase(sName)){
-                alert = "The song has been sucesfully bougth";
                 stop = true;    
             }
         }
-        return alert;
+        return stop;
     }
 
     public boolean addSale(String sName){
@@ -110,6 +108,5 @@ public class Artist extends Productor {
         }
         return price;
     }
-
     
 }

@@ -18,7 +18,8 @@ public class NeoTunesApp {
     }
 
     public static void main(String[] args) {
-        
+        addManager();
+        menu();
     }
 
     public static void addManager(){    
@@ -437,5 +438,146 @@ public class NeoTunesApp {
         System.out.println(alert);
     }
 
-     
+    public void generateInforms(){
+        boolean continuar = true;
+        while(continuar){
+            System.out.println("Choose one of the next options");
+            System.out.println(" 1 - Show the total amount of playbacks");
+            System.out.println(" 2 - Show the most heared genre for an user");
+            System.out.println(" 3 - Show the most heared genre in the platform");
+            System.out.println(" 4 - Show the most heared category for an user");
+            System.out.println(" 5 - Show the most heared category in the platform");
+            System.out.println(" 6 - Show podium of artist");
+            System.out.println(" 7 - Show the podium if content creators");
+            System.out.println(" 8 - Show the podium of Songs");
+            System.out.println(" 9 - Show the podium of Podcasts");
+            System.out.println(" 10 - Show sales and songs selled for each genre");
+            System.out.println(" 11 - Show info of the most selled song");
+            System.out.println(" 12 - To show the most selled genre");
+            System.out.println(" 13 - To return ro the previous menu ");
+            int option = read.nextInt();
+            switch(option){
+                case 1: ntApp.showTotalAmountPlays();
+                    break;
+                case 2: ntApp.showMostHearedGenreOfUser();
+                    break;
+                case 3: ntApp.showMostHearedGenre();
+                    break;
+                case 4: ntApp.showMostHearedCategoryOfUser();
+                    break;
+                case 5: ntApp.showMostHearedCategory();
+                    break;
+                case 6: ntApp.artsistPodium();
+                    break;
+                case 7: ntApp.contentCPodium();
+                    break;
+                case 8: ntApp.podiumSongs();
+                    break;
+                case 9: ntApp.podiumPodcast();
+                    break;
+                case 10:
+                    break;
+                case 11: 
+                    break;
+                case 12:
+                    break;
+                case 13: System.out.println("Heading back to the previous menu");
+                continuar = false;
+                    break;
+                default: System.out.println(" Invalid option");
+                    break;
+            }
+        }
+        
+    }
+
+    public void showTotalAmountPlays(){
+        // Count plays, add method to SImulate audio
+        int totalValue = ntManager.totalPlays();
+        System.out.println("The total amount of played audios is " + totalValue);
+    }
+
+    public void showMostHearedGenreOfUser(){
+        // Count plays, add method to SImulate audio
+        System.out.println("Type the name of the user");
+        System.out.println("Here are the users");
+        ntManager.showRegisteredUsers(); 
+        String uName = read.nextLine();
+        String alert = ntManager.mostHearedGenreUsr(uName);
+        System.out.println(alert);
+
+    }
+
+    public void showMostHearedGenre(){
+        // Count plays, add method to SImulate audio
+        String alert = ntManager.mostHearedGenre();
+        System.out.println(alert);
+    }
+
+    public void showMostHearedCategoryOfUser(){
+        // Count plays, add method to SImulate audio
+        System.out.println("Type the name of the user");
+        System.out.println("Here are the users");
+        ntManager.showRegisteredUsers(); 
+        String uName = read.nextLine();
+        String alert = ntManager.mostHearedCategoryUser(uName);
+        System.out.println(alert);
+    }
+
+    public void showMostHearedCategory(){
+        // Count plays, add method to SImulate audio
+        String alert = ntManager.mostHearedCategory();
+        System.out.println(alert); 
+    }
+
+    public void artsistPodium(){
+        String podio = ntManager.artistPodium();
+        System.out.println(podio);
+    }
+
+    public void contentCPodium(){
+        String podio = ntManager.contentCreatorPodium();
+        System.out.println(podio);
+    }
+
+    public void podiumSongs(){
+        String podio = ntManager.songsPodium();
+        System.out.println(podio);
+    }
+
+    public void podiumPodcast(){
+        String podio = ntManager.podcastPodium();
+        System.out.println(podio);
+    }
+    
+    public void mostSelledGenre(){
+        String alert = ntManager.mostSelledGenre();
+        System.out.println(alert);
+    }
+
+    public void showSalesAndSongsForEachGenre(){
+        System.out.println("Choose one of the next options");
+        System.out.println(" 1 - ROCK");
+        System.out.println(" 2 - POP");
+        System.out.println(" 3 - TRAP");
+        System.out.println(" 4 - HOUSE");
+        int option = read.nextInt();
+        if(option != 1 || option!= 2 || option != 3 || option != 4){
+            Boolean validateAns = true;
+            while(validateAns){
+                System.out.println("Invalid option");
+                System.out.println("Please choose a valid one again");
+                option = read.nextInt();
+                if(option != 1 || option!= 2 || option != 3 || option != 4){
+                    validateAns = false;
+                }
+            }
+            
+        }
+
+        String alert = ntManager.salesSongsGenre(option);
+        System.out.println(alert);
+
+    }
+
 }

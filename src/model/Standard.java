@@ -158,7 +158,7 @@ public class Standard extends Consumer {
         return alert;
     }
 
-    public String simulateAudioSt(String pName, String sName){
+    public String simulateAudio(String pName, String sName){
         String alert = "This playlist doesnt exists";
         boolean stop = false;
         for(int i  = 0; i<stPlaylists.length && !stop; i++){

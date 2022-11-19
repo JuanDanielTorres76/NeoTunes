@@ -118,7 +118,7 @@ public class Premium extends Consumer{
 
     }
 
-    public String simulateAudioPr(String pName, String sName){
+    public String simulateAudio(String pName, String sName){
         String alert = "This playlist doesnt exists";
         boolean stop = false;
         for(int i  = 0; i<prPlaylists.size() && !stop; i++){
