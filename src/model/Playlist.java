@@ -17,6 +17,12 @@ public class Playlist {
 
     //methods 
 
+    /**
+     * Metodo constructor para la clase PLAYLIST
+     * <b>pre: </b> atributos declarados previamente  
+     * <b>post: </b> Se instancia un objeto de la clase PLAYLIST 
+     * @param name nombre digitado por el usuario 
+     */
     public Playlist(String name){
         this.name = name;
         FillMat();
@@ -24,6 +30,12 @@ public class Playlist {
         matriz = new int[6][6]; 
     }
 
+    /**
+     * Metodo para contar los podcast dentro de una PLAYLSIT
+     * <b>pre: </b> debe haberse instanciado un objeto de la clase previamente
+     * <b>post: </b> Se muestra el numero de podcast que existen en la clase
+     * @return se retorna el numero de podcast creados
+     */
     public int countPodcats(){
         int counter = 0;
         for(int i = 0; i<AudioPlaylist.size(); i++){
@@ -34,6 +46,12 @@ public class Playlist {
         return counter;
     }
 
+    /**
+     *  Metodo para contar los songs dentro de una PLAYLSIT
+     * <b>pre: </b> debe haberse instanciado un objeto de la clase previamente
+     * <b>post: </b> Se muestra el numero de canciones que existen en la clase
+     * @return se retorna el numeor de canciones en una playlist
+     */
     public int countSongs(){
         int counter = 0;
         for(int i = 0; i<AudioPlaylist.size(); i++){
@@ -45,6 +63,13 @@ public class Playlist {
     }
 
 
+    /**
+     * Metodo para eliminar en Item de una playlist
+     * <b>pre: </b> debe haberse instanciado un objeto de la clase previamente
+     * <b>post: </b> Se elimina un objeto de una playlist
+     * @param name nombre del audio que se eliminara 
+     * @return se retorna el estado del metodo
+     */
     public String removeItem(String name){
         String message = "";
         boolean stop = false;
@@ -61,6 +86,14 @@ public class Playlist {
         return message;
     }
 
+    /**
+     *  Metodo para cambiar de posicion Items de una PLAYLIST 
+     * <b>pre: </b> debe haberse instanciado un objeto de la clase previamente
+     * <b>post: </b> Se cambia un Item de un audio
+     * @param fSong el primer nombre del audio
+     * @param sSOng el segundi nombre del audio
+     * @return se retorna el estado del metodo 
+     */
     public String switchItem(String fSong, String sSOng){
         String message = "";
         boolean stop = false, stop1 = false;
@@ -127,6 +160,13 @@ public class Playlist {
         return message;
     }
 
+    /**
+     *  Metodo para añadir una cacnion a una playlist
+     * <b>pre: </b> debe haberse instanciado un objeto de la clase previamente
+     * <b>post: </b> Se añade una cancion
+     * @param obj objeto tipo AUDIO obtenido previamente por ejecucion de metodos
+     * @return se retorna estado del metodo
+     */
     public String addSong(AudioProduct obj){
         String alert = "";
         boolean stop = false;
@@ -143,6 +183,13 @@ public class Playlist {
         return alert;
     }
 
+    /**
+     * Metodo para simualro los audios
+     * <b>pre: </b> debe haberse instanciado un objeto de la clase previamente
+     * <b>post: </b> Se simula un audio
+     * @param sName nombre de la cancion 
+     * @return se retorna el estado del metodo
+     */
     public String simulateAudio(String sName){
         String alert = "This song doesnt exist";
         boolean stop = false;
@@ -161,6 +208,13 @@ public class Playlist {
         return alert;
     }
 
+    /**
+     * Metodo para contar las reproducciones de la canciones
+     * <b>pre: </b> debe haberse instanciado un objeto de la clase previamente
+     * <b>post: </b> Se muestar el total de reproduccionse 
+     * @param sName nombre de la cacnion
+     * @return se retorna el numero de reproducciones de una cacnion
+     */
     public int countPlayedAudio(String sName){
         int option = 4;
         boolean stop = false;
@@ -200,6 +254,11 @@ public class Playlist {
         return option;
     }
 
+    /**
+     * Metodo para llenar la matriz de codigos
+     * <b>pre: </b> debe crearse un objeto del metodo
+     * <b>post: </b> Se llena la matriz
+     */
     public void FillMat(){
         for( int i = 0; i<matriz.length; i++){
             for(int j = 0; j<matriz[0].length; j++){
@@ -209,24 +268,55 @@ public class Playlist {
 
     }
 
+    /**
+     * Metodo ppara devolver un numero aleatorio 
+     * <b>pre: </b> debe instanciarse un metodo
+     * <b>post: </b> Se retorna un numero aleatorio
+     * @param max un numero que sera el maximo valor al que podra tomar el valor de retorno
+     * @return retorna el valor aleatorio
+     */
     public int numRand(int max){
         int i = (int) (Math.random()*max);
         return i;
     }
 
 
+    /**
+     * Metodo get para el atributo Name
+     * <b>pre: </b> debe haberse declarado previamente el atributo
+     * <b>post: </b> Se retorna el atributo
+     * @return retorna el atributo
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Metodo get para el atributo code
+     * <b>pre: </b> debe haberse declarado previamente el atributo
+     * <b>post: </b> Se retorna el atributo
+     * @return retorna el atributo
+     */
     public String getCode() {
         return code;
     }
 
+    /**
+     * Metodo set para el atributo code
+     * <b>pre: </b> debe haberse declarado previamente el atributo
+     * <b>post: </b> Se retorna el atributo nuevamente
+     * @param code valor al que tomara el codigo
+     */
     public void setCode(String code) {
         this.code = code;
     }
 
+    /**
+     * Metodo para recorrer la matriz de una forma N y retornar el codigo
+     * <b>pre: </b> debe haberse instanciado previamente el objeto
+     * <b>post: </b> se retrona el codigo
+     * @return se retorna el codigo
+     */
     public String formN(){
         String code = "", part1 = "", part2 = "", part3 = "";
         for(int i = matriz.length-1; i>0; i--){
@@ -246,6 +336,12 @@ public class Playlist {
         return code;
     }
 
+    /**
+     * Metodo para recorrer la matriz de una forma especifica y retornar el codigo
+     * <b>pre: </b> debe haberse instanciado previamente el objeto
+     * <b>post: </b> se retrona el codigo
+     * @return se retorna el codigo
+     */
     public String reverseForm(){
         String code = "";
         for(int i = matriz.length-1; i>=0; i--){
@@ -259,6 +355,12 @@ public class Playlist {
     }
 
 
+    /**
+     * Metodo para recorrer la matriz de una forma T y retornar el codigo
+     * <b>pre: </b> debe haberse instanciado previamente el objeto
+     * <b>post: </b> se retorna el codigo
+     * @return se retorna el codigo 
+     */
     public String formT(){
         String code = "", part1 ="", part2 = "", part3 = "", part4 ="";
         for(int j = 0; j<(matriz[0].length/2); j++){
@@ -281,12 +383,23 @@ public class Playlist {
         return code;
     }
 
+    /**
+     * Metodo para mostrar las canciones de una playlist 
+     * <b>pre: </b> debe haberse instanciado previamente el objeto
+     * <b>post: </b> se retornar las canciones de la playlist
+     */
     public void showSongs(){
         for(int i = 0; i<AudioPlaylist.size(); i++){
             System.out.println( i + " - " + AudioPlaylist.get(i).getName());
         }
     }
 
+    /**
+     * Metodo para compartir la playlist
+     * <b>pre: </b> debe haberse instanciado el objeto
+     * <b>post: </b> se retrona el codigo
+     * @return se retorna el codigo 
+     */
     public String sharePlaylist(){
         String alert = "", code = "";
         int sCont = countSongs(), pCont = countPodcats();
@@ -308,6 +421,12 @@ public class Playlist {
     }
 
 
+    /**
+     * Metodo get para el la matriz 
+     * <b>pre: </b> debe haberse declarado previamente el atributo
+     * <b>post: </b> Se retorna el atributo
+     * @return se retorna la matriz
+     */
     public int[][] getMatriz() {
         return matriz;
     }
