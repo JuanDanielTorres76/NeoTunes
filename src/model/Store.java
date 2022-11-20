@@ -15,6 +15,12 @@ public class Store {
 
 
 
+    /**
+     *  Metodo constructor de la clase STORE 
+     * <b>pre: </b> atributos declarados previamente 
+     * <b>post: </b> creacion del objeto
+     * @param name nombre asigando por defecto
+     */
     public Store(String name){
         this.name = name;
         bougthSongs = new ArrayList<Song>();
@@ -24,6 +30,14 @@ public class Store {
         houseTransactions = 0;
     }
 
+    /**
+     *  Metodo añadir una transaccion 
+     * <b>pre: </b> obajeto STORE previamente insatnciado
+     * <b>post: </b> se añade una transaccion 
+     * @param obj se obtiene un objeto tipo cancion
+     * @param validation se valida la transaccion
+     * @return se retorna el estado del metodo
+     */
     public String addTransaction(Song obj, boolean validation){
         String alert = "";
         int increase = 0;
@@ -55,6 +69,12 @@ public class Store {
         return alert;
     }
 
+    /**
+     *  Metodo para mostrar el genero mas vendido 
+     * <b>pre: </b> metodo de simulacion de compra de cancion previamente instanciado
+     * <b>post: </b> se muestra el genero mas vendido
+     * @return se retorna el genero mas vendido
+     */
     public String mostSelledGenre(){
         String alert = "", part = "";
         int bigger = 0, countR = 0, countP = 0, countT = 0, countH = 0;
@@ -96,6 +116,13 @@ public class Store {
        
     }
 
+    /**
+     *  Metodo para mostrar la informacion del genero escogido, como sus ventas y precio de las mismas 
+     * <b>pre: </b> metodo de simulacion de compra de la canciones previamente instanciado
+     * <b>post: </b> se muestra por pantalla la informacion del genero escogido
+     * @param option opcion deigitada por el usuario
+     * @return se retorna por pantalla la informacion escogida
+     */
     public String infoGenre(int option ){
         int countR = 0, countP = 0, countT = 0, countH = 0;
         String alert = "";
@@ -129,7 +156,13 @@ public class Store {
         return alert;
     }
 
-    public String mostSelledSong(){
+   /**
+    *  Metodo para mostrar la informacion de la cancion mas vendida
+     * <b>pre: </b> metodo de simulacion de cancion previamente ejecutado 
+     * <b>post: </b> se muetsra el estado del metodo 
+     * @return se retorna la informacion de la cancion mas vendida 
+     */
+     public String mostSelledSong(){
         String alert = "", name = "", mName = "";
         int mostSelled = 0, counter = 0;
         double price = 0, fPrice = 0;
@@ -153,6 +186,12 @@ public class Store {
 
 
 
+    /**
+     *  Metodo get para el atributo name
+     * <b>pre: </b> atributo previamente declarado
+     * <b>post: </b> se retorna el atributo
+     * @return se retorna el atributo
+     */
     public String getName() {
         return name;
     }
@@ -161,34 +200,82 @@ public class Store {
         this.name = name;
     }
 
+    /**  
+     * Metodo get para el atributo RockTransactions
+     * <b>pre: </b> atributo previamente declarado
+     * <b>post: </b> se retorna el atributo
+     * @return se retorna el atributo 
+     */
     public int getRockTransactions() {
         return rockTransactions;
     }
 
+    /**
+     * Metodo set para el atributo RockTransactions
+     * <b>pre: </b> atributo previamente declarado
+     * <b>post: </b> se retorna el atributo con su nuevo valor
+     * @param rockTransactions valor al que cambiara el atributo 
+     */
     public void setRockTransactions(int rockTransactions) {
         this.rockTransactions = rockTransactions;
     }
 
+    /**
+     * Metodo get para el atributo PopTransactions
+     * <b>pre: </b> atributo previamente declarado
+     * <b>post: </b> se retorna el atributo
+     * @return se retorna el atributo 
+     */
     public int getPopTransactions() {
         return popTransactions;
     }
 
+    /**
+     * * Metodo set para el atributo PopTransactions
+     * <b>pre: </b> atributo previamente declarado
+     * <b>post: </b> se retorna el atributo con su nuevo valor
+     * @param popTransactions valor al que cambiara el atributo
+     */
     public void setPopTransactions(int popTransactions) {
         this.popTransactions = popTransactions;
     }
 
+    /**
+     * Metodo get para el atributo TrapTransactions
+     * <b>pre: </b> atributo previamente declarado
+     * <b>post: </b> se retorna el atributo
+     * @return se retorna el atributo
+     */
     public int getTrapTransactions() {
         return trapTransactions;
     }
 
+    /**
+     * * Metodo set para el atributo TrapTransactions
+     * <b>pre: </b> atributo previamente declarado
+     * <b>post: </b> se retorna el atributo con su nuevo valor
+     * @param trapkTransactions valor al que cambiara el atributo 
+     */
     public void setTrapTransactions(int trapkTransactions) {
         this.trapTransactions = trapkTransactions;
     }
 
+    /**
+     * Metodo get para el atributo HouseTransactions
+     * <b>pre: </b> atributo previamente declarado
+     * <b>post: </b> se retorna el atributo
+     * @return se retorna el valor
+     */
     public int getHouseTransactions() {
         return houseTransactions;
     }
 
+    /**
+     * * Metodo set para el atributo HouseTransactions
+     * <b>pre: </b> atributo previamente declarado
+     * <b>post: </b> se retorna el atributo con su nuevo valor
+     * @param houseTransactions valor al que cambiara el atributo
+     */
     public void setHouseTransactions(int houseTransactions) {
         this.houseTransactions = houseTransactions;
     }
